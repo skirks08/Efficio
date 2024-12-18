@@ -22,7 +22,7 @@ const TaskList = ({ tasks, onToggle, onDelete }) => {
     });
 
     return (
-        <div>
+        <div className="task-list">
             <div className="filter-sort">
                 <select onChange={(e) => setFilter(e.target.value)} value={filter}>
                     <option value="all">All</option>

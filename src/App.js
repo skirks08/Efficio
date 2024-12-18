@@ -1,7 +1,17 @@
-import logo from './logo.svg';
-import './App.css'; //Added comment again
+//import logo from './logo.svg';
+import React, { useEffect } from 'react'; 
+import './App.css';
+import TaskList from './components/TaskList';
+import AddTask from './components/AddTask';
+import TaskDetails from './components/TaskDetails';
+import { useDispatch, useSelector } from 'react-redux';
+import { fetchTasks, toggleTask, deleteTask } from './store/tasksSlice';
+import { setTheme } from './store/userPreferencesSlice';
+import { toggleModal } from './store/uiStateSlice';
 
 function App() {
+  
+  
   return (
     <div className="App">
       <header className="App-header">
@@ -20,6 +30,6 @@ function App() {
       </header>
     </div>
   );
-}
+};
 
 export default App;

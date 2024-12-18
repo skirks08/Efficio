@@ -1,7 +1,10 @@
 /* Style for the Task List container */
 .task-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
     width: 100%;
-    max-width: 800px;
+    max-width: 1200px;
     margin: 0 auto;
     padding: 20px;
     background-color: #f9f9f9;
@@ -12,7 +15,9 @@
   /* Filter and Sort Controls */
   .filter-sort {
     display: flex;
+    flex-direction: column;
     justify-content: space-between;
+    gap: 10px;
     margin-bottom: 20px;
   }
   
@@ -32,6 +37,7 @@
   
   li {
     display: flex;
+    flex-direction: column;
     justify-content: space-between;
     align-items: center;
     padding: 15px;
@@ -59,5 +65,13 @@
   
   button:hover {
     background-color: #d32f2f;
+  }
+
+  /* Media Queries */
+
+  @media (min-width: 768px) {
+    .filter-sort {
+      flex-direction: row;
+    }
   }
   

@@ -11,3 +11,42 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+/* Media Queries */
+
+@media (max-width: 768px) {
+  .add-task,
+  .task-details {
+    padding: 15px;
+  }
+
+  .add-task h2,
+  .task-details h2 {
+    font-size: 20px;
+  }
+
+  button {
+    padding: 8px 12px;
+  }
+}
+
+@media (max-width: 480px) {
+  .App-header {
+    font-size: 14px;
+    padding: 10px;
+  }
+
+  .task-list ul {
+    padding: 0;
+  }
+
+  li {
+    flex-direction: column;
+    padding: 10px;
+  }
+
+  button {
+    width: 100%;
+    margin-top: 5px;
+  }
+}

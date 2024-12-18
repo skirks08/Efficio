@@ -1,11 +1,19 @@
 import { createSlice } from "@reduxjs/toolkit";
 
+const getInitialTheme = () => {
+    const savedTheme = localStorage.getItem('theme');
+    return savedTheme || 'light';
+};
+
 const userPreferencesSlice = createSlice({
     name: 'userPreferences',
-    initialState: { theme: 'light'},
+    initialState: { theme: getInitialTheme() },
     reducers: {
         setTheme: (state, action) => {
-            state.theme = action.payload;
+            if (['light', 'dark', 'highContrast'].includes(action.payload)) {
+                state.theme = action.payload;
+            };
+            localStorage.setItem('theme', action.payload);
         },
     },
 });

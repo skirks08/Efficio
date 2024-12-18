@@ -1,4 +1,5 @@
 import React from "react";
+import './AddTask.css';
 
 const AddTask = ({ onAdd }) => {
     const [title, setTitle] = useState('');

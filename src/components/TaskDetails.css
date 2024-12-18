@@ -52,4 +52,12 @@
   button:hover {
     background-color: #388e3c;
   }
+
+  /* Media Queries */
+
+  @media (max-width: 768px) {
+    .task-details h2 {
+      font-size: 20px;
+    }
+  }
   

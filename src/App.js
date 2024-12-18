@@ -8,7 +8,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { fetchTasks, toggleTask, deleteTask } from './store/tasksSlice';
 import { setTheme } from './store/userPreferencesSlice';
 import { toggleModal } from './store/uiStateSlice';
-import { AddTask as addTask } from './store/tasksSlice'; // action import
+//import { AddTask as addTask } from './store/tasksSlice'; // action import
 
 function App() {
   const dispatch = useDispatch();

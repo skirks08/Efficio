@@ -10,8 +10,14 @@ const tasksSlice = createSlice({
     name: 'tasks',
     initialState: { tasks: [], status: 'idle'},
     reducers: {
-        AddTask: (state, action) => {
+        addTask: (state, action) => {
             state.tasks.push(action.payload);
+        },
+        updateTask: (state, action) => {
+            const index = state.tasks.findIndex((t) => t.id === action.payload.id);
+            if (index !== -1) {
+                state.tasks[index] = { ...state.tasks[index], ...action.payload };
+            }
         },
         toggleTask: (state, action) => {
             const task = state.tasks.find((t) => t.id === action.payload);

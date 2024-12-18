@@ -8,23 +8,31 @@ export const fetchTasks = createAsyncThunk('tasks/fetchTasks', async () => {
 
 const tasksSlice = createSlice({
     name: 'tasks',
-    initialState: [],
+    initialState: { tasks: [], status: 'idle'},
     reducers: {
         AddTask: (state, action) => {
-            state.push(action.payload);
+            state.tasks.push(action.payload);
         },
         toggleTask: (state, action) => {
-            const task = state.find((t) => t.id === action.payload);
+            const task = state.tasks.find((t) => t.id === action.payload);
             if (task) task.completed = !task.completed;
         },
         deleteTask: (state, action) => {
-            return state.filter((task) => task.id !== action.payload);
+            state.tasks = state.tasks.filter((task) => task.id !== action.payload);
         },
     },
     extraReducers: (builder) => {
-        builder.addCase(fetchTasks.fulfilled, (state, action) => {
-            return action.payload;
-        });
+        builder
+            .addCase(fetchTasks.pending, (state) => {
+                state.status = 'loading';
+            })
+            .addCase(fetchTasks.fulfilled, (state, action) => {
+                state.tasks = action.payload;
+                state.status = 'succeeded';
+            })
+            .addCase(fetchTasks.rejected, (state) => {
+                state.status = 'failed';
+            });
     },
 });
 

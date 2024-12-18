@@ -32,7 +32,9 @@
   }
   
   button {
+    display: inline-block;
     padding: 10px 15px;
+    width: auto;
     background-color: #2196f3;
     color: #fff;
     border: none;
@@ -43,5 +45,13 @@
   
   button:hover {
     background-color: #1976d2;
+  }
+
+  /* Media Queries */
+
+  @media (max-width: 768px) {
+    .add-task h2 {
+      font-size: 20px;
+    }
   }
   

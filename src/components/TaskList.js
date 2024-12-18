@@ -15,7 +15,8 @@ const TaskList = ({ tasks, onToggle, onDelete }) => {
         if (sortBy === 'dueDate') {
             return new Date(a.dueDate) - new Date(b.dueDate);
         } else if (sortBy === 'priority') {
-            return a.priority - b.priority;
+            const priorities = { low: 1, medium: 2, high: 3 }
+            return priorities[a.priority] - priorities[b.priority];
         } 
         return 0;
     });

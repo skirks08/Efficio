@@ -1,4 +1,5 @@
 import React from "react";
+import './TaskDetails.css';
 
 const TaskDetails = ({ task, onClose }) => {
     <div>

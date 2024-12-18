@@ -2,10 +2,16 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const uiStateSlice = createSlice({
     name: 'uiState',
-    initialState: { modalOpen: false },
+    initialState: { modalOpen: false, currentModal: null },
     reducers: {
-        toggleModal: (state) => {
-            state.modalOpen = !state.modalOpen;
+        toggleModal: (state, action) => {
+            if (state.modalOpen && state.currentModal === action.payload) {
+                state.modalOpen = false;
+                state.currentModal = null;
+            } else {
+                state.modalOpen = true;
+                state.currentModal = action.payload;
+            }
         },
     },
 });

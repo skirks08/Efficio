@@ -6,10 +6,14 @@ const AddTask = ({ onAdd }) => {
     const [description, setDescription] = useState('');
     const [dueDate, setDueDate] = useState('');
     const [priority, setPriority] = useState('low');
+    const [error, setError] = useState('');
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        if (!title) return; //Ensure title not empty
+        if (!title) {
+            setError('Title is required');
+            return;
+        }
 
         const newTask = { title, description, dueDate, priority, completed: false };
         onAdd(newTask);
@@ -17,9 +21,13 @@ const AddTask = ({ onAdd }) => {
         setDescription('');
         setDueDate('');
         setPriority('low');
+        setError('');
     };
 
     return (
+      <div className="add-task">
+        <h2>Add a New Task</h2>
+        {error && <p className="error">{error}</p>}
         <form onSubmit={handleSubmit}>
             <input 
                 type="text"
@@ -44,6 +52,7 @@ const AddTask = ({ onAdd }) => {
             </select>
             <button type="submit">Add Task</button>
         </form>
+      </div>
     );
 };
 

@@ -1,0 +1,28 @@
+.task-list {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .task-item {
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .task-item.completed {
+    background-color: #f4f4f4;
+    text-decoration: line-through;
+  }
+  
+  .task-title {
+    font-size: 16px;
+    font-weight: 600;
+  }
+  
+  .task-status {
+    font-size: 14px;
+    color: #777;
+  }
+  

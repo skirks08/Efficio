@@ -42,11 +42,11 @@ function App() {
   };
 
   const handleAddTask = (task) => {
-    dispatch(addTask(task));
+    dispatch({ type: 'tasks/AddTask', payload: task });
   };
 
   const handleSaveTask = (updatedTask) => {
-    dispatch(updateTask(updatedTask));
+    dispatch({ type: 'tasks/updatedTask', payload: updatedTask });
   };  
 
   const handleCloseModal = () => {

@@ -3,7 +3,7 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 
 export const fetchTasks = createAsyncThunk('tasks/fetchTasks', async (_, { rejectWithValue }) => {
     try {
-        const response = await fetch('/api/tasks');
+        const response = await fetch('http://localhost:5000/tasks');
         if (!response.ok) throw new Error('Failed to fetch tasks');
         return response.json();
     } catch (error) {

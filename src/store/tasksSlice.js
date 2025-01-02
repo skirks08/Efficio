@@ -1,6 +1,7 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 //import AddTask from "../components/AddTask";
 
+// Fetch Tasks 
 export const fetchTasks = createAsyncThunk('tasks/fetchTasks', async (_, { rejectWithValue }) => {
     try {
         const response = await fetch('http://localhost:5000/tasks');

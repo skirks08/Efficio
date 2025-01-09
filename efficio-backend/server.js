@@ -34,3 +34,10 @@ app.put('/tasks/:id', (req, res) => {
         res.status(404).send('Task not found');
     }
 });
+
+// Delete a task
+
+app.delete('/tasks/:id', (req, res) => {
+    tasks = tasks.filter((task) => task.id !== parseInt(req.params.id));
+    res.status(204).send();
+});

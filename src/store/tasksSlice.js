@@ -21,6 +21,15 @@ export const addTask = (task) => async (dispatch) => {
     }
 };
 
+export const updateTask = (id, updates) => async (dispatch) => {
+    try {
+        const response = await axios.put(`/tasks/${id}`, updates);
+        dispatch({ type: 'UPDATE_TASK_SUCCESS', payload: response.data });
+    } catch (error) {
+        dispatch({ type: 'UPDATE_TASK_FAILURE', error });
+    }
+};
+
 const tasksSlice = createSlice({
     name: 'tasks',
     initialState: { tasks: [], status: 'idle'},

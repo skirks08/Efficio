@@ -12,6 +12,15 @@ export const fetchTasks = () => async (dispatch) => {
    }
 };
 
+export const addTask = (task) => async (dispatch) => {
+    try {
+        const response = await axios.post('/tasks', task);
+        dispatch({ type: 'ADD_TASK_SUCCESS', payload: response.data });
+    } catch (error) {
+        dispatch({ type: 'ADD_TASK_FAILURE', error });
+    }
+};
+
 const tasksSlice = createSlice({
     name: 'tasks',
     initialState: { tasks: [], status: 'idle'},
@@ -48,5 +57,5 @@ const tasksSlice = createSlice({
     },
 });
 
-export const { addTask, toggleTask, deleteTask } = tasksSlice.actions;
+
 export default tasksSlice.reducer;

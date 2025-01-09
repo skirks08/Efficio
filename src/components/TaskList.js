@@ -1,46 +1,30 @@
-import React, { useState } from 'react';
+import React, { useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { fetchTasks } from '../store/tasksSlice';
 import './TaskList.css';
 
-const TaskList = ({ tasks, onToggle, onDelete }) => {
-    const [filter, setFilter] = useState('all');
-    const [sortBy, setSortBy] = useState('dueDate');
+const TaskList = () => {
+    const dispatch = useDispatch();
+    const tasks = useSelector((state) => state.tasks);
+    const loading = useSelector((state) => state.loading);
+    const error = useSelector((state) => state.error);
 
-    const filteredTasks = tasks.filter((task) => {
-        if (filter === 'completed') return task.completed;
-        if (filter === 'pending') return !task.completed;
-        return 'true'; //ALL filter
-    });
+    // Fetch tasks
 
-    const sortedTasks = filteredTasks.sort((a, b) => {
-        if (sortBy === 'dueDate') {
-            return new Date(a.dueDate) - new Date(b.dueDate);
-        } else if (sortBy === 'priority') {
-            const priorities = { low: 1, medium: 2, high: 3 }
-            return priorities[a.priority] - priorities[b.priority];
-        } 
-        return 0;
-    });
+    useEffect(() => {
+        dispatch(fetchTasks());
+    }, [dispatch]);
+
+    if (loading) return <p>Loading tasks...</p>;
+    if (error) return <p>Error loading tasks: {error.message}</p>;
 
     return (
-        <div className="task-list">
-            <div className="filter-sort">
-                <select onChange={(e) => setFilter(e.target.value)} value={filter}>
-                    <option value="all">All</option>
-                    <option value="completed">Completed</option>
-                    <option value="pending">Pending</option>
-                </select>
-                <select onChange={(e) => setSortBy(e.target.value)} value={sortBy}>
-                    <option value="dueDate">Due Date</option>
-                    <option value="priority">Priority</option>
-                </select>
-            </div>
+        <div>
+            <h2>Task List</h2>
             <ul>
-                {sortedTasks.map((task) => (
+                {tasks.map((task) => (
                     <li key={task.id}>
-                        <span>{task.title}</span>
-                        <span>{task.completed ? 'Completed' : 'Pending'}</span>
-                        <button onClick={() => onToggle(task.id)}>Toggle</button>
-                        <button onClick={() => onDelete(task.id)}>Delete</button>
+                        {task.name} - {task.completed ? 'Completed' : 'Pending'}
                     </li>
                 ))}
             </ul>

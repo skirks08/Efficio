@@ -1,58 +1,60 @@
 import React, { useState } from "react";
+import { useDispatch } from "react-redux";
+import { addTask } from "../store/tasksSlice";
 import './AddTask.css';
 
-const AddTask = ({ onAdd }) => {
-    const [title, setTitle] = useState('');
-    const [description, setDescription] = useState('');
-    const [dueDate, setDueDate] = useState('');
-    const [priority, setPriority] = useState('low');
-    const [error, setError] = useState('');
+const AddTask = () => {
+    const [taskName, setTaskName] = useState('');
+    const [taskDescription, setTaskDescription] = useState('');
+    const dispatch = useDispatch();
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        if (!title) {
-            setError('Title is required');
-            return;
-        }
 
-        const newTask = { title, description, dueDate, priority, completed: false };
-        onAdd(newTask);
-        setTitle('');
-        setDescription('');
-        setDueDate('');
-        setPriority('low');
-        setError('');
+        // Create new task
+
+        const newTask = {
+            name: taskName,
+            description: taskDescription,
+            completed: false,
+        };
+
+        // Dispatch addTask action
+
+        dispatch(addTask(newTask));
+
+        // Reset form
+
+        setTaskName('');
+        setTaskDescription('');
     };
 
     return (
-      <div className="add-task">
-        <h2>Add a New Task</h2>
-        {error && <p className="error">{error}</p>}
-        <form onSubmit={handleSubmit}>
-            <input 
-                type="text"
-                value={title}
-                onChange={(e) => setTitle(e.target.value)}
-                placeholder="Task Title"
-            />
-            <textarea 
-                value={description}
-                onChange={(e) => setDescription(e.target.value)}
-                placeholder="Task Description"
-            />
-            <input 
-                type="date"
-                value={dueDate}
-                onChange={(e) => setDueDate(e.target.value)}
-            />
-            <select value={priority} onChange={(e) => setPriority(e.target.value)}>
-                <option value="low">Low</option>
-                <option value="medium">Medium</option>
-                <option value="high">High</option>
-            </select>
-            <button type="submit">Add Task</button>
-        </form>
-      </div>
+        <div>
+            <h2>Add New Task</h2>
+            <form onSubmit={handleSubmit}>
+                <div>
+                    <label htmlFor="taskName">Task Name:</label>
+                    <input 
+                        type="text"
+                        id="taskName"
+                        value={taskName}
+                        onChange={(e) => setTaskName(e.target.value)}
+                        required
+                    />
+                </div>
+                <div>
+                    <label htmlFor="taskDescription">Task Description:</label>
+                    <textarea
+                        id="taskDescription"
+                        value={taskDescription}
+                        onChange={(e) => setTaskDescription(e.target.value)}
+                        required
+                    ></textarea>
+                </div>
+                <button type="submit">Add Task</button>
+            </form>
+        </div>
     );
 };
 

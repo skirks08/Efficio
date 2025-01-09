@@ -1,41 +1,41 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from 'axios';
-//import AddTask from "../components/AddTask";
+import { api } from "../../utils/api"; 
 
-// Fetch Tasks 
+
 export const fetchTasks = () => async (dispatch) => {
    try {
-    const response = await axios.get('/tasks');
+    const response = await api.get('/tasks');
     dispatch({ type: 'FETCH_TASKS_SUCCESS', payload: response.data });
    } catch (error) {
-    dispatch({ type: 'FETCH_TASKS_FAILURE', error });
+    dispatch({ type: 'FETCH_TASKS_FAILURE', error: error.message });
    }
 };
 
 export const addTask = (task) => async (dispatch) => {
     try {
-        const response = await axios.post('/tasks', task);
+        const response = await api.post('/tasks', task);
         dispatch({ type: 'ADD_TASK_SUCCESS', payload: response.data });
     } catch (error) {
-        dispatch({ type: 'ADD_TASK_FAILURE', error });
+        console.error('Error adding task', error.message);
     }
 };
 
 export const updateTask = (id, updates) => async (dispatch) => {
     try {
-        const response = await axios.put(`/tasks/${id}`, updates);
+        const response = await api.put(`/tasks/${id}`, updates);
         dispatch({ type: 'UPDATE_TASK_SUCCESS', payload: response.data });
     } catch (error) {
-        dispatch({ type: 'UPDATE_TASK_FAILURE', error });
+        dispatch({ type: 'UPDATE_TASK_FAILURE', error: error.message });
     }
 };
 
 export const deleteTask = (id) => async (dispatch) => {
     try {
-        await axios.delete(`/tasks/${id}`);
+        await api.delete(`/tasks/${id}`);
         dispatch({ type: 'DELETE_TASK_SUCCESS', payload: id });
     } catch (error) {
-        dispatch({ type: 'DELETE_TASK_FAILURE', error });
+        dispatch({ type: 'DELETE_TASK_FAILURE', error: error.message });
     }
 };
 

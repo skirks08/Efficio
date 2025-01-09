@@ -10,7 +10,7 @@ export const fetchTasks = () => async (dispatch) => {
    } catch (error) {
     dispatch({ type: 'FETCH_TASKS_FAILURE', error });
    }
-});
+};
 
 const tasksSlice = createSlice({
     name: 'tasks',

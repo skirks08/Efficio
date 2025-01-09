@@ -3,14 +3,13 @@ import axios from 'axios';
 //import AddTask from "../components/AddTask";
 
 // Fetch Tasks 
-export const fetchTasks = createAsyncThunk('tasks/fetchTasks', async (_, { rejectWithValue }) => {
-    try {
-        const response = await fetch('http://localhost:5000/tasks');
-        if (!response.ok) throw new Error('Failed to fetch tasks');
-        return response.json();
-    } catch (error) {
-        return rejectWithValue(error.message);
-    }
+export const fetchTasks = () => async (dispatch) => {
+   try {
+    const response = await axios.get('/tasks');
+    dispatch({ type: 'FETCH_TASKS_SUCCESS', payload: response.data });
+   } catch (error) {
+    dispatch({ type: 'FETCH_TASKS_FAILURE', error });
+   }
 });
 
 const tasksSlice = createSlice({

@@ -1,6 +1,8 @@
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { fetchTasks } from '../redux/actions/tasksActions';
+import Loading from './Loading';
+import Error from './Error';
 import './TaskList.css';
 
 const TaskList = () => {

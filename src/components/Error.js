@@ -1,7 +1,7 @@
 import React from "react";
 
-const error = ({ message }) => {
+const Error = ({ message }) => {
     return <p style={{ color: 'red' }}>Error: {message}</p>
 };
 
-export default error;
+export default Error;

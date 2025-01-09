@@ -7,9 +7,7 @@ import './TaskList.css';
 
 const TaskList = () => {
     const dispatch = useDispatch();
-    const tasks = useSelector((state) => state.tasks);
-    const loading = useSelector((state) => state.loading);
-    const error = useSelector((state) => state.error);
+    const { tasks, loading, error } = useSelector((state) => state.tasks);;
 
     // Fetch tasks
 
@@ -17,8 +15,8 @@ const TaskList = () => {
         dispatch(fetchTasks());
     }, [dispatch]);
 
-    if (loading) return <p>Loading tasks...</p>;
-    if (error) return <p>Error loading tasks: {error.message}</p>;
+    if (loading) return <Loading />;
+    if (error) return <Error message={error} />;
 
     return (
         <div>

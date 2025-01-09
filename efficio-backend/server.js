@@ -41,3 +41,8 @@ app.delete('/tasks/:id', (req, res) => {
     tasks = tasks.filter((task) => task.id !== parseInt(req.params.id));
     res.status(204).send();
 });
+
+const PORT = 3001;
+app.listen(PORT, () => {
+    console.log(`Backend server running at http://localhost:${PORT}`);
+});

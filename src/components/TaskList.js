@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { fetchTasks } from '../redux/tasksActions';
+import { fetchTasks } from '../redux/actions/tasksActions';
 import './TaskList.css';
 
 const TaskList = () => {

@@ -30,6 +30,15 @@ export const updateTask = (id, updates) => async (dispatch) => {
     }
 };
 
+export const deleteTask = (id) => async (dispatch) => {
+    try {
+        await axios.delete(`/tasks/${id}`);
+        dispatch({ type: 'DELETE_TASK_SUCCESS', payload: id });
+    } catch (error) {
+        dispatch({ type: 'DELETE_TASK_FAILURE', error });
+    }
+};
+
 const tasksSlice = createSlice({
     name: 'tasks',
     initialState: { tasks: [], status: 'idle'},

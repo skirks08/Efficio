@@ -20,4 +20,17 @@ app.post('/tasks', (req, res) => {
     const newTask = { id: Date.now(), ...req.body };
     tasks.push(newTask);
     res.status(201).json(newTask);
-})
+});
+
+// Update task
+
+app.put('/tasks/:id', (req, res) => {
+    const taskId = parseInt(req.params.id);
+    const taskIndex = tasks.findIndex((task) => task.id === taskId);
+    if(taskIndex > -1) {
+        tasks[taskIndex] = { ...tasks[taskIndex], ...req.body };
+        res.json(tasks[taskIndex]);
+    } else {
+        res.status(404).send('Task not found');
+    }
+});

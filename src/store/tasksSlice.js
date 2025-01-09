@@ -39,41 +39,38 @@ export const deleteTask = (id) => async (dispatch) => {
     }
 };
 
-const tasksSlice = createSlice({
-    name: 'tasks',
-    initialState: { tasks: [], status: 'idle'},
-    reducers: {
-        addTask: (state, action) => {
-            state.tasks.push(action.payload);
-        },
-        updateTask: (state, action) => {
-            const index = state.tasks.findIndex((t) => t.id === action.payload.id);
-            if (index !== -1) {
-                state.tasks[index] = { ...state.tasks[index], ...action.payload };
-            }
-        },
-        toggleTask: (state, action) => {
-            const task = state.tasks.find((t) => t.id === action.payload);
-            if (task) task.completed = !task.completed;
-        },
-        deleteTask: (state, action) => {
-            state.tasks = state.tasks.filter((task) => task.id !== action.payload);
-        },
-    },
-    extraReducers: (builder) => {
-        builder
-            .addCase(fetchTasks.pending, (state) => {
-                state.status = 'loading';
-            })
-            .addCase(fetchTasks.fulfilled, (state, action) => {
-                state.tasks = action.payload;
-                state.status = 'succeeded';
-            })
-            .addCase(fetchTasks.rejected, (state) => {
-                state.status = 'failed';
-            });
-    },
-});
+const initialState = {
+    tasks: [],
+    loading: false,
+    error: null,
+};
 
+const tasksReducer = (state = initialState, action) => {
+    switch(action.type) {
+        case 'FETCH_TASKS_SUCCESS':
+            return { ...state, tasks: action.payload, loading: false };
+        case 'ADD_TASK_SUCCESS':
+            return { ...state, tasks: [...state.tasks, action.payload], loading: false };
+        case 'UPDATE_TASK_SUCCESS':
+            return {
+                ...state,
+                tasks: state.tasks.map((task) => task.id === action.payload.id ? action.payload : task),
+                loading: false,
+            };
+        case 'DELETE_TASK_SUCCESS':
+            return {
+                ...state,
+                tasks: state.tasks.filter((task) => task.id !== action.payload),
+                loading: false,
+            };
+        case 'FETCH_TASKS_FAILURE':
+        case 'ADD_TASK_FAILURE':
+        case 'UPDATE_TASK_FAILURE':
+        case 'DELETE_TASK_FAILURE':
+            return { ...state, error: action.error, loading: false };
+        default:
+            return state;
+    }
+};
 
-export default tasksSlice.reducer;
+export default tasksReducer;

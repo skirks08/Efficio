@@ -1,5 +1,5 @@
 import { configureStore } from "@reduxjs/toolkit";
-import tasksReducer from './redux/tasksSlice';
+import tasksReducer from './redux/tasksActions';
 import userPreferencesReducer from './redux/userPreferencesSlice';
 import uiStateReducer from './redux/uiStateSlice';
 

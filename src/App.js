@@ -5,7 +5,7 @@ import TaskList from './components/TaskList';
 import AddTask from './components/AddTask';
 import TaskDetails from './components/TaskDetails';
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchTasks, toggleTask, deleteTask } from './redux/tasksSlice';
+import { fetchTasks, toggleTask, deleteTask } from './redux/tasksActions';
 import { setTheme } from './redux/userPreferencesSlice';
 import { toggleModal } from './redux/uiStateSlice';
 //import { AddTask as addTask } from './store/tasksSlice'; // action import

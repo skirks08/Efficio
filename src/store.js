@@ -1,7 +1,7 @@
 import { configureStore } from "@reduxjs/toolkit";
-import tasksReducer from './tasksSlice';
-import userPreferencesReducer from './userPreferencesSlice';
-import uiStateReducer from './uiStateSlice';
+import tasksReducer from './redux/tasksSlice';
+import userPreferencesReducer from './redux/userPreferencesSlice';
+import uiStateReducer from './redux/uiStateSlice';
 
 export const store = configureStore({
     reducer: {

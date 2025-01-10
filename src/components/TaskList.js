@@ -7,7 +7,7 @@ import './TaskList.css';
 
 const TaskList = () => {
     const dispatch = useDispatch();
-    const { tasks, loading, error } = useSelector((state) => state.tasks);;
+    const { tasks, loading, error } = useSelector((state) => state.tasks);
 
     // Fetch tasks
 

@@ -1,13 +1,12 @@
 import { configureStore } from 'redux';
 import thunk from 'redux-thunk';
-import { composeWithDevTools } from 'redux-devtools-extension';
 import rootReducer from './redux/reducers';
-import userPreferencesReducer from './redux/reducers/userPreferencesSlice';
-import uiStateReducer from './redux/reducers/uiStateSlice';
 
-const store = configureStore(
-    rootReducer,
-    composeWithDevTools(applyMiddleware(thunk))
-);
+const store = configureStore({
+    reducer: rootReducer,
+    middleware: (getDefaultMiddleware) =>
+        getDefaultMiddleware().concat(thunk),
+    devTools: process.env.NODE_ENV !== 'production',
+});
 
 export default store;

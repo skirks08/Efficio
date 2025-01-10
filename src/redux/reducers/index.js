@@ -7,6 +7,8 @@ import uiStateReducer from './uiStateSlice';
 
 const rootReducer = combineReducers({
     tasks: tasksReducer,
+    userPreferences: userPreferencesReducer,
+    uiState: uiStateReducer,
 });
 
 export default rootReducer;

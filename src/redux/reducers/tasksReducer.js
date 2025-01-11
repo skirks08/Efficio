@@ -8,6 +8,12 @@ const initialState = {
 
 const tasksReducer = (state = initialState, action) => {
     switch(action.type) {
+        case 'FETCH_TASKS_REQUEST':
+        case 'ADD_TASK_REQUEST':
+        case 'UPDATE_TASK_REQUEST':
+        case 'DELETE_TASK_REQUEST':
+            return { ...state, loading: true, error: null };
+            
         case 'FETCH_TASKS_SUCCESS':
             return { ...state, tasks: action.payload, loading: false };
         case 'ADD_TASK_SUCCESS':

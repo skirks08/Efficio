@@ -24,6 +24,7 @@ export const addTask = (task) => async (dispatch) => {
 };
 
 export const updateTask = (id, updates) => async (dispatch) => {
+    dispatch({ type: 'UPDATE_TASK_REQUEST' });
     try {
         const response = await api.put(`/tasks/${id}`, updates);
         dispatch({ type: 'UPDATE_TASK_SUCCESS', payload: response.data });

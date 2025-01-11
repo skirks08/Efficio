@@ -14,6 +14,7 @@ export const fetchTasks = () => async (dispatch) => {
 };
 
 export const addTask = (task) => async (dispatch) => {
+    dispatch({ type: 'ADD_TASK_REQUEST' });
     try {
         const response = await api.post('/tasks', task);
         dispatch({ type: 'ADD_TASK_SUCCESS', payload: response.data });

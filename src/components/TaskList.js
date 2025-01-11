@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { fetchTasks } from '../redux/actions/tasksActions';
+import { fetchTasks, deleteTask, updateTask } from '../redux/actions/tasksActions';
 import Loading from './Loading';
 import Error from './Error';
 import './TaskList.css';
@@ -24,7 +24,9 @@ const TaskList = () => {
             <ul>
                 {tasks.map((task) => (
                     <li key={task.id}>
-                        {task.name} - {task.completed ? 'Completed' : 'Pending'}
+                       <span>{task.name} - {task.completed ? 'Completed' : 'Pending'}</span>
+                       <button onClick={() => dispatch(deleteTask(task.id))}>Delete</button>
+                       <button onClick={() => dispatch(updateTask(task.id, { completed: !task.completed }))}>Toggle Status</button>
                     </li>
                 ))}
             </ul>

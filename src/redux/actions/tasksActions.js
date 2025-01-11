@@ -34,6 +34,7 @@ export const updateTask = (id, updates) => async (dispatch) => {
 };
 
 export const deleteTask = (id) => async (dispatch) => {
+    dispatch({ type: 'DELETE_TASK_REQUEST' });
     try {
         await api.delete(`/tasks/${id}`);
         dispatch({ type: 'DELETE_TASK_SUCCESS', payload: id });

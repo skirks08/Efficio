@@ -4,6 +4,7 @@ import { api } from "../../utils/api";
 
 
 export const fetchTasks = () => async (dispatch) => {
+    dispatch({ type: 'FETCH_TASKS_REQUEST' });
    try {
     const response = await api.get('/tasks');
     dispatch({ type: 'FETCH_TASKS_SUCCESS', payload: response.data });

@@ -32,6 +32,10 @@ const App = () => {
     setTasks(tasks.map((task) => (task.id === id ? updatedTask : task)));
   };
 
+  const deleteTask = (id) => {
+    setTasks(tasks.filter((task) => task.id !== id));
+  };
+
   return (
     <Router>
       <Routes>

@@ -1,57 +1,41 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { addTask } from "../redux/actions/tasksActions";
+import { useNavigate } from "react-router-dom";
 import './AddTask.css';
 
-const AddTask = () => {
-    const [taskName, setTaskName] = useState('');
-    const [taskDescription, setTaskDescription] = useState('');
-    const dispatch = useDispatch();
+const AddTask = ({ addTask }) => {
+    const [title, setTitle] = useState('');
+    const [description, setDescription] = useState('');
+    const navigate = useNavigate();
 
     const handleSubmit = (e) => {
         e.preventDefault();
-
-        // Create new task
-
         const newTask = {
-            name: taskName,
-            description: taskDescription,
-            completed: false,
+            id: Date.now(),
+            title,
+            description,
         };
-
-        // Dispatch addTask action
-
-        dispatch(addTask(newTask));
-
-        // Reset form
-
-        setTaskName('');
-        setTaskDescription('');
+        addTask(newTask);
+        navigate('/');
     };
 
     return (
         <div>
-            <h2>Add New Task</h2>
+            <h1>Add Task</h1>
             <form onSubmit={handleSubmit}>
-                <div>
-                    <label htmlFor="taskName">Task Name:</label>
-                    <input 
-                        type="text"
-                        id="taskName"
-                        value={taskName}
-                        onChange={(e) => setTaskName(e.target.value)}
-                        required
-                    />
-                </div>
-                <div>
-                    <label htmlFor="taskDescription">Task Description:</label>
-                    <textarea
-                        id="taskDescription"
-                        value={taskDescription}
-                        onChange={(e) => setTaskDescription(e.target.value)}
-                        required
-                    ></textarea>
-                </div>
+                <input 
+                    type="text"
+                    placeholder="Task Title"
+                    value={title}
+                    onChange={(e) => setTitle(e.target.value)}
+                    required
+                />
+                <textarea 
+                    placeholder="Task Description"
+                    value={description}
+                    onChange={(e) => setDescription(e.target.value)}
+                />
                 <button type="submit">Add Task</button>
             </form>
         </div>

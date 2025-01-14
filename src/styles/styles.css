@@ -1,0 +1,27 @@
+/* Blue productivity color palette */
+
+:root {
+    --primary-blue: #2196f3;
+    --secondary-blue: #1976D2;
+    --accent-color: #FFC107;
+    --neutral-light: #f5f5f5;
+    --neutral-dark: #333333;
+    --error-color: #F44336;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: var(--neutral-light);
+    color: var(--neutral-dark);
+}
+
+a {
+    text-decoration: none;
+    color: var(--primary-blue);
+    transition: color 0.3s ease;
+}
+
+a:hover {
+    color: var(--accent-color);
+}

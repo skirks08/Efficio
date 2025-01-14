@@ -8,6 +8,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { setTheme } from './redux/reducers/userPreferencesSlice';
 import { toggleModal } from './redux/reducers/uiStateSlice';
 import { updateTask } from './redux/actions/tasksActions';
+import Navbar from './components/Navbar';
 
 const App = () => {
   const [tasks, setTasks] = useState([]);
@@ -39,6 +40,7 @@ const App = () => {
 
   return (
     <Router>
+      <Navbar />
       <Routes>
         <Route path="/" element={<TaskList tasks={tasks} deleteTask={deleteTask} />} />
         <Route path="/task/:id" element={<TaskDetails tasks={tasks} updateTask={updateTask} />} />

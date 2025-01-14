@@ -8,6 +8,15 @@ import { setTheme } from './redux/reducers/userPreferencesSlice';
 import { toggleModal } from './redux/reducers/uiStateSlice';
 
 const App = () => {
+  const [tasks, setTasks] = useState([]);
+
+  // Load tasks from localStorage
+
+  useEffect(() => {
+    const savedTasks = JSON.parse(localStorage.getItem('tasks')) || [];
+    setTasks(savedTasks);
+  }, []);
+
   return (
     <Router>
       <Routes>

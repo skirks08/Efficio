@@ -3,33 +3,22 @@ import { useSelector, useDispatch } from 'react-redux';
 import { fetchTasks, deleteTask, updateTask } from '../redux/actions/tasksActions';
 import Loading from './Loading';
 import Error from './Error';
+import { Link } from 'react-router-dom';
 import './TaskList.css';
+import tasksReducer from '../redux/reducers/tasksReducer';
 
-const TaskList = () => {
-    const dispatch = useDispatch();
-    const { tasks, loading, error } = useSelector((state) => state.tasks);
-
-    // Fetch tasks
-
-    useEffect(() => {
-        dispatch(fetchTasks());
-    }, [dispatch]);
-
-    if (loading) return <Loading />;
-    if (error) return <Error message={error} />;
-
+const TaskList = ({ tasks }) => {
     return (
         <div>
-            <h2>Task List</h2>
+            <h1>Task List</h1>
             <ul>
                 {tasks.map((task) => (
                     <li key={task.id}>
-                       <span>{task.name} - {task.completed ? 'Completed' : 'Pending'}</span>
-                       <button onClick={() => dispatch(deleteTask(task.id))}>Delete</button>
-                       <button onClick={() => dispatch(updateTask(task.id, { completed: !task.completed }))}>Toggle Status</button>
+                        <Link to={`/task/${task.id}`}>{task.title}</Link>
                     </li>
                 ))}
             </ul>
+            <Link to="/add-task" >Add New Task</Link>
         </div>
     );
 };

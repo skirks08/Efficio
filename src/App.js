@@ -11,9 +11,9 @@ const App = () => {
   return (
     <Router>
       <Routes>
-        <Route path="/" element={<TaskList />} />
-        <Route path="/task/:id" element={<TaskDetails />} />
-        <Route path="/add-task" element={<AddTask />} />
+        <Route path="/" element={<TaskList tasks={tasks} />} />
+        <Route path="/task/:id" element={<TaskDetails tasks={tasks} updateTask={updateTask} />} />
+        <Route path="/add-task" element={<AddTask addTask={addTask} />} />
       </Routes>
     </Router>
   );

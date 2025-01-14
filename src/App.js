@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'; 
 import './App.css';
+import './styles/global.css';
 import TaskList from './components/TaskList';
 import AddTask from './components/AddTask';
 import TaskDetails from './components/TaskDetails';

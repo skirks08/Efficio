@@ -7,7 +7,7 @@ import { Link } from 'react-router-dom';
 import './TaskList.css';
 import tasksReducer from '../redux/reducers/tasksReducer';
 
-const TaskList = ({ tasks }) => {
+const TaskList = ({ tasks, deleteTask }) => {
     return (
         <div>
             <h1>Task List</h1>
@@ -15,6 +15,7 @@ const TaskList = ({ tasks }) => {
                 {tasks.map((task) => (
                     <li key={task.id}>
                         <Link to={`/task/${task.id}`}>{task.title}</Link>
+                        <button onClick={() => deleteTask(task.id)}>Delete</button>
                     </li>
                 ))}
             </ul>

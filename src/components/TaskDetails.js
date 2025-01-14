@@ -1,28 +1,29 @@
 import React from "react";
 import { useSelector } from "react-redux";
+import { useParams, useNavigate } from "react-router-dom";
 import './TaskDetails.css';
 
-const TaskDetails = ({ taskId }) => {
-    // Get task using ID from store
+const TaskDetails = ({ tasks, updateTask }) => {
+    const { id } = useParams();
+    const navigate = useNavigate();
+    const task = tasks.find((task) => task.id === parseInt(id));
 
-    const task = useSelector((state) => 
-        state.tasks.find((task) => task.id === taskId)
-    );
+    if (!task) {
+        return <p>Task not found!</p>;
+    }
 
-    if (!task) return <p>Task not found</p>;
+    const handleUpdate = () => {
+        const updatedTask = { ...task, title: task.title + ' (Updated)' };
+        updateTask(task.id, updatedTask);
+        navigate('/');
+    };
 
     return (
         <div>
-            <h2>Task Details</h2>
-            <p>
-                <strong>Name:</strong> {task.name}
-            </p>
-            <p>
-                <strong>Description:</strong> {task.description}
-            </p>
-            <p>
-                <strong>Status:</strong> {task.completed ? 'Completed' : 'Pending'}
-            </p>
+            <h1>{task.title}</h1>
+            <p>{task.description}</p>
+            <button onClick={handleUpdate}>Update Task</button>
+            <button onClick={() => navigate('/')}>Back to List</button>
         </div>
     );
 };

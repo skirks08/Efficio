@@ -48,7 +48,7 @@ const TaskList = ({ tasks, deleteTask, updateTask }) => {
                 </select>
             </div>
             <ul>
-                {tasks.filter((task) => !task.completed).map((task) => (
+                {filteredTasks.map((task) => (
                     <li key={task.id} className={getPriorityClass(task.priority)}>
                         <input 
                             type="checkbox"

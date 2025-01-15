@@ -81,3 +81,16 @@ a:hover {
 
 /* Priority Level Section */
 
+/* Filter and Category Section */
+
+.filter-section {
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.filter-section select {
+    padding: 5px;
+    font-size: 16px;
+}

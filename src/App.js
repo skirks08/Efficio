@@ -61,7 +61,7 @@ const App = () => {
         </div>
       </div>
       <Routes>
-        <Route path="/" element={<TaskList tasks={tasks} deleteTask={deleteTask} />} />
+        <Route path="/" element={<TaskList tasks={tasks} deleteTask={deleteTask} updateTask={updateTask}/>} />
         <Route path="/completed-tasks" element={<CompletedTasks tasks={tasks} deleteTask={deleteTask} />} />
         <Route path="/task/:id" element={<TaskDetails tasks={tasks} updateTask={updateTask} />} />
         <Route path="/add-task" element={<AddTask addTask={addTask} />} />

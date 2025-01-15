@@ -7,6 +7,7 @@ import './AddTask.css';
 const AddTask = ({ addTask }) => {
     const [title, setTitle] = useState('');
     const [description, setDescription] = useState('');
+    const [category, setCategory] = useState('Work');
     const [priority, setPriority] = useState('Medium');
     const navigate = useNavigate();
 
@@ -16,6 +17,7 @@ const AddTask = ({ addTask }) => {
             id: Date.now(),
             title,
             description,
+            category,
             priority,
             completed: false,
         };
@@ -39,6 +41,12 @@ const AddTask = ({ addTask }) => {
                     value={description}
                     onChange={(e) => setDescription(e.target.value)}
                 />
+                <select value={category} onChange={(e) => setCategory(e.target.value)}>
+                    <option value="Work">Work</option>
+                    <option value="Personal">Personal</option>
+                    <option value="Urgent">Urgent</option>
+                    <option value="Others">Others</option>
+                </select>
                 <select value={priority} onChange={(e) => setPriority(e.target.value)}>
                     <option value="High">High</option>
                     <option value="Medium">Medium</option>

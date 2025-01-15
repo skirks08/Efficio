@@ -7,7 +7,14 @@ import { Link } from 'react-router-dom';
 import './TaskList.css';
 import tasksReducer from '../redux/reducers/tasksReducer';
 
-const TaskList = ({ tasks, deleteTask }) => {
+const TaskList = ({ tasks, deleteTask, updateTask }) => {
+    const toggleComplete = (id, completed) => {
+        const updatedTask = tasks.find((task) => task.id === id);
+        if (updatedTask) {
+            updateTask(id, { ...updatedTask, completed: !completed });
+        }
+    };
+    
     const getPriorityClass = (priority) => {
         switch (priority) {
             case 'High':
@@ -25,8 +32,13 @@ const TaskList = ({ tasks, deleteTask }) => {
         <div>
             <h1>Task List</h1>
             <ul>
-                {tasks.map((task) => (
+                {tasks.filter((task) => !task.completed).map((task) => (
                     <li key={task.id} className={getPriorityClass(task.priority)}>
+                        <input 
+                            type="checkbox"
+                            checked={task.completed}
+                            onChange={() => toggleComplete(task.id, task.completed)}
+                        />
                         <Link to={`/task/${task.id}`}>{task.title}</Link>
                         <span className="priority">{task.priority}</span>
                         <button onClick={() => deleteTask(task.id)}>Delete</button>

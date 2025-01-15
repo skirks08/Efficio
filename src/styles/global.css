@@ -29,7 +29,7 @@ a:hover {
 /* Hero Section */
 
 .hero-section {
-    background: url('src/resources/images/clock.jpg') center/cover no-repeat;
+    background: url('../resources/images/clock.jpg') center/cover no-repeat;
     color: white;
     text-align: center;
     padding: 100px 20px;

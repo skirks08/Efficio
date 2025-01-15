@@ -6,6 +6,7 @@ import workSpaceImage from './resources/images/work-space.jpg';
 import TaskList from './components/TaskList';
 import AddTask from './components/AddTask';
 import TaskDetails from './components/TaskDetails';
+import CompletedTasks from './components/CompletedTasks';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { setTheme } from './redux/reducers/userPreferencesSlice';
 import { toggleModal } from './redux/reducers/uiStateSlice';
@@ -61,6 +62,7 @@ const App = () => {
       </div>
       <Routes>
         <Route path="/" element={<TaskList tasks={tasks} deleteTask={deleteTask} />} />
+        <Route path="/completed-tasks" element={<CompletedTasks tasks={tasks} deleteTask={deleteTask} />} />
         <Route path="/task/:id" element={<TaskDetails tasks={tasks} updateTask={updateTask} />} />
         <Route path="/add-task" element={<AddTask addTask={addTask} />} />
       </Routes>

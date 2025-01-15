@@ -47,12 +47,12 @@ const App = () => {
       </div>
       <div className="features-section">
         <div className="feature"> 
-          <img src="src/resources/images/clock.jpg" alt="Time Management" />
+          <img src="src/resources/images/clock.jpg" alt="Time Management" >
           <h3>Manage Your Time Effectively</h3>
           <p>Plan, prioritize, and track tasks to stay on top of your busy schedule</p>
         </div>
         <div className="feature">
-          <img src="src/resources/images/checkbox.jpg" alt="Task Completion" />
+          <img src="src/resources/images/checkbox.jpg" alt="Task Completion" >
           <h3>Achieve Your Goals</h3>
           <p>Check off tasks as you complete them and celebrate progress</p>
         </div>

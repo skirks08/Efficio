@@ -24,6 +24,11 @@ const TaskDetails = ({ tasks, updateTask }) => {
         <div>
             <h1>{task.title}</h1>
             <p>{task.description}</p>
+            <select value={priority} onChange={(e) => setPriority(e.target.value)}>
+                <option value="High">High</option>
+                <option value="Medium">Medium</option>
+                <option value="Low">Low</option>
+            </select>
             <button onClick={handleUpdate}>Update Task</button>
             <button onClick={() => navigate('/')}>Back to List</button>
         </div>

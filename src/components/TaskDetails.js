@@ -7,6 +7,7 @@ const TaskDetails = ({ tasks, updateTask }) => {
     const { id } = useParams();
     const navigate = useNavigate();
     const task = tasks.find((task) => task.id === parseInt(id));
+    const [priority, setPriority] = useState(task.priority);
 
     if (!task) {
         return <p>Task not found!</p>;

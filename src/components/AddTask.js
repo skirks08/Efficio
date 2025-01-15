@@ -17,6 +17,7 @@ const AddTask = ({ addTask }) => {
             title,
             description,
             priority,
+            completed: false,
         };
         addTask(newTask);
         navigate('/');

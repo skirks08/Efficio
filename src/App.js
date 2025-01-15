@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react'; 
 import './App.css';
 import './styles/global.css';
+import clockImage from './resources/images/clock.jpg';
+import checkboxImage from './resources/images/checkbox.jpg';
 import TaskList from './components/TaskList';
 import AddTask from './components/AddTask';
 import TaskDetails from './components/TaskDetails';
@@ -52,7 +54,7 @@ const App = () => {
           <p>Plan, prioritize, and track tasks to stay on top of your busy schedule</p>
         </div>
         <div className="feature">
-          <img src="src/resources/images/checkbox.jpg" alt="Task Completion" />
+          <img src={checkboxImage} alt="Task Completion" />
           <h3>Achieve Your Goals</h3>
           <p>Check off tasks as you complete them and celebrate progress</p>
         </div>

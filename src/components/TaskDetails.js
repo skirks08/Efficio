@@ -10,13 +10,14 @@ const TaskDetails = ({ tasks, updateTask }) => {
     const task = tasks.find((task) => task.id === parseInt(id));
     const [description, setDescription] = useState(task.description);
     const [priority, setPriority] = useState(task.priority);
+    const [category, setCategory] = useState(task.category);
 
     if (!task) {
         return <p>Task not found!</p>;
     }
 
     const handleUpdate = () => {
-        const updatedTask = { ...task, title: task.title + ' (Updated)', description, priority };
+        const updatedTask = { ...task, title: task.title + ' (Updated)', description, category, priority };
         updateTask(task.id, updatedTask);
         navigate('/');
     };
@@ -29,6 +30,13 @@ const TaskDetails = ({ tasks, updateTask }) => {
                 value={description}
                 onChange={(e) => setDescription(e.target.value)}
             />
+            <label>Category:</label>
+            <select value={category} onChange={(e) => setCategory(e.target.value)}>
+                <option value="Work">Work</option>
+                <option value="Personal">Personal</option>
+                <option value="Urgent">Urgent</option>
+                <option value="Others">Others</option>
+            </select>
             <select value={priority} onChange={(e) => setPriority(e.target.value)}>
                 <option value="High">High</option>
                 <option value="Medium">Medium</option>

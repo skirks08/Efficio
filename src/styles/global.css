@@ -30,7 +30,7 @@ a:hover {
 
 .hero-section {
     background: url('../resources/images/clock.jpg') center/cover no-repeat;
-    color: white;
+    color: #388e3c;
     text-align: center;
     padding: 100px 20px;
 }

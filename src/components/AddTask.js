@@ -7,6 +7,7 @@ import './AddTask.css';
 const AddTask = ({ addTask }) => {
     const [title, setTitle] = useState('');
     const [description, setDescription] = useState('');
+    const [priority, setPriority] = useState('Medium');
     const navigate = useNavigate();
 
     const handleSubmit = (e) => {
@@ -15,6 +16,7 @@ const AddTask = ({ addTask }) => {
             id: Date.now(),
             title,
             description,
+            priority,
         };
         addTask(newTask);
         navigate('/');
@@ -36,6 +38,11 @@ const AddTask = ({ addTask }) => {
                     value={description}
                     onChange={(e) => setDescription(e.target.value)}
                 />
+                <select value={priority} onChange={(e) => setPriority(e.target.value)}>
+                    <option value="High">High</option>
+                    <option value="Medium">Medium</option>
+                    <option value="Low">Low</option>
+                </select>
                 <button type="submit">Add Task</button>
             </form>
         </div>

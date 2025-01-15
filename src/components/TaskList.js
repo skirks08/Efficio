@@ -8,13 +8,27 @@ import './TaskList.css';
 import tasksReducer from '../redux/reducers/tasksReducer';
 
 const TaskList = ({ tasks, deleteTask }) => {
+    const getPriorityClass = (priority) => {
+        switch (priority) {
+            case 'High':
+                return 'priority-high';
+            case 'Medium':
+                return 'priority-medium';
+            case 'Low':
+                return 'priority-low';
+            default:
+                return '';
+        }
+    };
+
     return (
         <div>
             <h1>Task List</h1>
             <ul>
                 {tasks.map((task) => (
-                    <li key={task.id}>
+                    <li key={task.id} className={getPriorityClass(task.priority)}>
                         <Link to={`/task/${task.id}`}>{task.title}</Link>
+                        <span className="priority">{task.priority}</span>
                         <button onClick={() => deleteTask(task.id)}>Delete</button>
                     </li>
                 ))}

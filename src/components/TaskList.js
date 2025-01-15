@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { fetchTasks, deleteTask, updateTask } from '../redux/actions/tasksActions';
 import Loading from './Loading';
@@ -8,6 +8,12 @@ import './TaskList.css';
 import tasksReducer from '../redux/reducers/tasksReducer';
 
 const TaskList = ({ tasks, deleteTask, updateTask }) => {
+    const [filter, setFilter] = useState('All');
+
+    const filteredTasks = tasks.filter((task) => 
+        filter === 'All' ? true : task.category === filter
+    );
+
     const toggleComplete = (id, completed) => {
         const updatedTask = tasks.find((task) => task.id === id);
         if (updatedTask) {
@@ -31,6 +37,16 @@ const TaskList = ({ tasks, deleteTask, updateTask }) => {
     return (
         <div>
             <h1>Task List</h1>
+            <div className="filter-section">
+                <label>Filter by Category:</label>
+                <select value={filter} onChange={(e) => setFilter(e.target.value)}>
+                    <option value="All">All</option>
+                    <option value="Work">Work</option>
+                    <option value="Personal">Personal</option>
+                    <option value="Urgent">Urgent</option>
+                    <option value="Others">Others</option>
+                </select>
+            </div>
             <ul>
                 {tasks.filter((task) => !task.completed).map((task) => (
                     <li key={task.id} className={getPriorityClass(task.priority)}>

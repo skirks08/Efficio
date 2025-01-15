@@ -15,7 +15,7 @@ const TaskDetails = ({ tasks, updateTask }) => {
     }
 
     const handleUpdate = () => {
-        const updatedTask = { ...task, priority };
+        const updatedTask = { ...task, title: task.title + ' (Updated)', priority };
         updateTask(task.id, updatedTask);
         navigate('/');
     };

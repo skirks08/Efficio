@@ -33,7 +33,7 @@ const TaskList = ({ tasks, deleteTask, updateTask }) => {
             <h1>Task List</h1>
             <ul>
                 {tasks.filter((task) => !task.completed).map((task) => (
-                    <li key={task.id} className={getPriorityClass(task.priority)}>
+                    <li key={task.id} className={`${getPriorityClass(task.priority)} ${task.completed ? 'completed' : ''}`}>
                         <input 
                             type="checkbox"
                             checked={task.completed}

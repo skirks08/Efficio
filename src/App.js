@@ -41,6 +41,22 @@ const App = () => {
   return (
     <Router>
       <Navbar />
+      <div className="hero-section">
+        <h1>Welcome to Efficio</h1>
+        <p>Boost your productivity and achieve your goals with ease</p>
+      </div>
+      <div className="features-section">
+        <div className="feature"> 
+          <img src="src/resources/images/clock.jpg" alt="Time Management" />
+          <h3>Manage Your Time Effectively</h3>
+          <p>Plan, prioritize, and track tasks to stay on top of your busy schedule</p>
+        </div>
+        <div className="feature">
+          <img src="src/resources/images/checkbox.jpg" alt="Task Completion" />
+          <h3>Achieve Your Goals</h3>
+          <p>Check off tasks as you complete them and celebrate progress</p>
+        </div>
+      </div>
       <Routes>
         <Route path="/" element={<TaskList tasks={tasks} deleteTask={deleteTask} />} />
         <Route path="/task/:id" element={<TaskDetails tasks={tasks} updateTask={updateTask} />} />

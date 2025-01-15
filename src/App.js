@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import './App.css';
 import './styles/global.css';
 import checkboxImage from './resources/images/checkbox.jpg';
+import workSpaceImage from './resources/images/work-space.jpg';
 import TaskList from './components/TaskList';
 import AddTask from './components/AddTask';
 import TaskDetails from './components/TaskDetails';
@@ -48,7 +49,7 @@ const App = () => {
       </div>
       <div className="features-section">
         <div className="feature"> 
-          <img src='' alt="Time Management" />
+          <img src={workSpaceImage} alt="Time Management" />
           <h3>Manage Your Time Effectively</h3>
           <p>Plan, prioritize, and track tasks to stay on top of your busy schedule</p>
         </div>

@@ -20,7 +20,11 @@ const App = () => {
 
   useEffect(() => {
     const savedTasks = JSON.parse(localStorage.getItem('tasks')) || [];
-    setTasks(savedTasks);
+    const tasksWithCategory = savedTasks.map((task) => ({
+      ...task,
+      category: task.category || 'Uncategorized',
+    }));
+    setTasks(tasksWithCategory);
   }, []);
 
   // Save tasks to localStorage when state changes

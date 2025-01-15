@@ -8,6 +8,7 @@ const TaskDetails = ({ tasks, updateTask }) => {
     const { id } = useParams();
     const navigate = useNavigate();
     const task = tasks.find((task) => task.id === parseInt(id));
+    const [description, setDescription] = useState(task.description);
     const [priority, setPriority] = useState(task.priority);
 
     if (!task) {
@@ -24,6 +25,10 @@ const TaskDetails = ({ tasks, updateTask }) => {
         <div>
             <h1>{task.title}</h1>
             <p>{task.description}</p>
+            <textarea 
+                value={description}
+                onChange={(e) => setDescription(e.target.value)}
+            />
             <select value={priority} onChange={(e) => setPriority(e.target.value)}>
                 <option value="High">High</option>
                 <option value="Medium">Medium</option>

@@ -103,6 +103,13 @@
     color: green;
   }
 
+  /* Completed Section */
+
+  .completed {
+    text-decoration: line-through;
+    color: gray;
+  }
+
   /* Media Queries */
 
   @media (min-width: 768px) {
